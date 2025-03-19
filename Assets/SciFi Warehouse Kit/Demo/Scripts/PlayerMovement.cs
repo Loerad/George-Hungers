@@ -10,14 +10,21 @@ public class PlayerMovement : MonoBehaviour
     Vector3 velocity;
     Vector2 moveAmount;
 
+    [Header("GroundCheck"), Tooltip("Properties for ground check, may be removed")]
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
     bool isGrounded;
-
+    [Header("Audio"), Tooltip("Properties for footsteps")]
+    private AudioSource audioSource;
     public AudioClip footStepSound;
     public float footStepDelay;
     private float nextFootstep = 0;
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     void FixedUpdate()
     {
@@ -38,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
             nextFootstep -= Time.deltaTime;
             if (nextFootstep <= 0)
             {
-                GetComponent<AudioSource>().PlayOneShot(footStepSound, 0.7f);
+                audioSource.PlayOneShot(footStepSound, 0.7f);
                 nextFootstep += footStepDelay;
             }
         }
