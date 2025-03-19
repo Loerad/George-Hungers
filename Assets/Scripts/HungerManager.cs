@@ -1,18 +1,26 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class HungerManager : MonoBehaviour
 {
     public static HungerManager Instance;
 
-    [SerializeField] private float maxHunger = 100f;
-    [SerializeField] private float hungerRate = 1f;
+    [SerializeField] private float maxHunger;
+    [SerializeField] private float hungerRate;
 
     private float currentHunger;
-
+    private float hungerPercent;
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     void Start()
@@ -24,9 +32,20 @@ public class HungerManager : MonoBehaviour
     void Update()
     {
         currentHunger -= hungerRate * Time.deltaTime;
-        
-        Debug.Log(currentHunger);
+        currentHunger = Mathf.Clamp(currentHunger, 0f, maxHunger);
+
+        //Debug.Log(HungerPercent());
 
         //TODO: if hunger reaches 0 call game over
+    }
+
+    public float HungerPercent()
+    {
+        if (maxHunger <= 0)
+        {
+            return 0f;
+        }
+            
+        return currentHunger / maxHunger;
     }
 }
