@@ -285,9 +285,9 @@ MonoBehaviour:
     m_ActionName: 'Player/Attack[/Mouse/leftButton,/Keyboard/enter]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7372043843712457776}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: OnMove
+      - m_Target: {fileID: 4495819451599260554}
+        m_TargetAssemblyTypeName: InteractionBehaviour, Assembly-CSharp
+        m_MethodName: OnInteract
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -389,6 +389,7 @@ GameObject:
   - component: {fileID: 5774829030025722928}
   - component: {fileID: 1916913742140793534}
   - component: {fileID: 8323086858364845744}
+  - component: {fileID: 4495819451599260554}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -529,6 +530,19 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &4495819451599260554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4157927566014966501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71aa681bd85660d46ad7e22fb64cc18d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactSound: {fileID: 8300000, guid: e376c8b272920ae48bce8aaf55bf9f30, type: 3}
 --- !u!1 &4345948349682004364
 GameObject:
   m_ObjectHideFlags: 0

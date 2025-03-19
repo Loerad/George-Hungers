@@ -11,10 +11,12 @@ public class InteractionBehaviour : MonoBehaviour
     private AudioClip interactSound;
     private readonly float interactDelay = 0.1f;
     private float nextInteract = 0;
-    private LayerMask layerMask = LayerMask.GetMask("Default", "Garbage", "Puzzle", "George");
+    private LayerMask layerMask;
 
     void Start()
     {
+        layerMask = LayerMask.GetMask("Default", "Garbage", "Puzzle", "George");
+
         audioSource = GetComponentInParent<AudioSource>();
     }
 
@@ -31,10 +33,11 @@ public class InteractionBehaviour : MonoBehaviour
             {
                 audioSource.PlayOneShot(interactSound, 1f);
                 RaycastHit hit;
-                if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
+                if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity, layerMask))
                 {
                     Debug.Log("hit");
-                    Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.green);
+                    Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.green);
+
                     if (hit.collider.gameObject.CompareTag("George"))
                     {
                         GeorgeInteract();
@@ -47,11 +50,6 @@ public class InteractionBehaviour : MonoBehaviour
                     {
                         GarbageInteract();
                     }
-                }
-                else
-                {
-                    Debug.Log("Not hit");
-                    Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red); 
                 }
                 nextInteract = interactDelay;
             }
