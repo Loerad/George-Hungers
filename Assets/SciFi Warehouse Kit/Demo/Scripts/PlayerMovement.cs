@@ -30,13 +30,15 @@ public class PlayerMovement : MonoBehaviour
     
     [SerializeField]
     private AudioClip footStepSound;
+    private float volume = 0.5f; //this is arbitrary and needs an accessor for a settings panel later
     private const float WALKING_DELAY = 0.42f;
     private const float SPRINTING_DELAY = 0.35f;
     private float footStepDelay = 0.42f;
     private float nextFootstep = 0;
     
+    // add another list named whatever type of footstep here
     [SerializeField]
-    private List<AudioClip> concreteFootsteps = new List<AudioClip>();
+    private List<AudioClip> concreteFootsteps = new List<AudioClip>(); 
     
     [SerializeField]
     private List<AudioClip> metalFootsteps = new List<AudioClip>();
@@ -51,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = Physics.CheckSphere(groundCheck.position, GROUND_DISTANCE, groundMask);    
     }
 
-    void Update()
+    void Update() //this code is from the demo from SciFi Warehouse
     {
         Vector3 motion = transform.right * moveAmount.x + transform.forward * moveAmount.y;
         controller.Move(motion.normalized * speed * Time.deltaTime);
@@ -89,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
             nextFootstep -= Time.deltaTime;
             if (nextFootstep <= 0)
             {
-                if (groundFlavour.CurrentFloor() == METAL_LAYER)
+                if (groundFlavour.CurrentFloor() == METAL_LAYER) //add a layer and a if else with the list for a new step type
                 {
                     RandomizeStep(metalFootsteps);
                 }
@@ -97,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     RandomizeStep(concreteFootsteps);
                 }
-                audioSource.PlayOneShot(footStepSound, 0.5f); //arbitrary volume 
+                audioSource.PlayOneShot(footStepSound, volume);
                 nextFootstep += footStepDelay;
             }
         }
