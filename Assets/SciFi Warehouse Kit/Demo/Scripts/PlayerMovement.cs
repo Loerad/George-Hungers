@@ -1,25 +1,33 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement"), Tooltip("Properties for movement")]
     public CharacterController controller;
-    public const float speed = 8f;
-    public const float gravity = -9.81f;
+    private const float speed = 5f;
+    private const float gravity = -9.81f;
     Vector3 velocity;
     Vector2 moveAmount;
 
     [Header("GroundCheck"), Tooltip("Properties for ground check, may be removed")]
     public Transform groundCheck;
-    public float groundDistance = 0.4f;
+    private float groundDistance = 0.45f;
     public LayerMask groundMask;
     bool isGrounded;
     [Header("Audio"), Tooltip("Properties for footsteps")]
+    [SerializeField]
+    private GroundFlavour groundFlavour;
     private AudioSource audioSource;
-    public AudioClip footStepSound;
-    public float footStepDelay;
+    [SerializeField]
+    private AudioClip footStepSound;
+    private float footStepDelay = 0.42f;
     private float nextFootstep = 0;
+    [SerializeField]
+    private List<AudioClip> concreteFootsteps = new List<AudioClip>();
+    [SerializeField]
+    private List<AudioClip> metalFootsteps = new List<AudioClip>();
 
     void Start()
     {
@@ -45,12 +53,25 @@ public class PlayerMovement : MonoBehaviour
             nextFootstep -= Time.deltaTime;
             if (nextFootstep <= 0)
             {
-                audioSource.PlayOneShot(footStepSound, 0.7f);
+                if (groundFlavour.CurrentFloor() == 3) //metal layer
+                {
+                    RandomizeStep(metalFootsteps);
+                }
+                else 
+                {
+                    RandomizeStep(concreteFootsteps);
+                }
+                audioSource.PlayOneShot(footStepSound, 0.5f);
                 nextFootstep += footStepDelay;
             }
         }
     }
 
+    private void RandomizeStep(List<AudioClip> steps)
+    {
+        int nextSound = Random.Range(0, steps.Count - 1);
+        footStepSound = steps[nextSound];
+    }
     public void OnMove(InputAction.CallbackContext context)
     {
         moveAmount = context.ReadValue<Vector2>();
