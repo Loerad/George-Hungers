@@ -31152,6 +31152,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4113818417770440430, guid: 528f6c40ba01da34f96f492e501fd927, type: 3}
   m_PrefabInstance: {fileID: 1476468849}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1478805516 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7372043843712457776, guid: 9f97456680abbda4499ba67bf13715c6, type: 3}
+  m_PrefabInstance: {fileID: 4744176110517239195}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ab0fc542e6aa6e48bf61987d199042b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1479429943
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46523,7 +46534,7 @@ PrefabInstance:
       objectReference: {fileID: 4300008, guid: 3c5ecca38b8a52643ac5b38d00d57155, type: 3}
     - target: {fileID: 1987996098089819764, guid: 65467f6b70ddf5e4890bd9f317b3a5b7, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1987996098089819764, guid: 65467f6b70ddf5e4890bd9f317b3a5b7, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -48604,7 +48615,7 @@ PrefabInstance:
       objectReference: {fileID: 4300008, guid: 3c5ecca38b8a52643ac5b38d00d57155, type: 3}
     - target: {fileID: 1987996098089819764, guid: 65467f6b70ddf5e4890bd9f317b3a5b7, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1987996098089819764, guid: 65467f6b70ddf5e4890bd9f317b3a5b7, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -50734,6 +50745,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CatWalk Stairs Wide
       objectReference: {fileID: 0}
+    - target: {fileID: 5548154041111978484, guid: 63d248e67db58c04aa37512e19848568, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5548154041112411600, guid: 63d248e67db58c04aa37512e19848568, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -51190,6 +51205,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -5970593528329470270, guid: 9f97456680abbda4499ba67bf13715c6, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5970593528329470270, guid: 9f97456680abbda4499ba67bf13715c6, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1478805516}
+    - target: {fileID: -5970593528329470270, guid: 9f97456680abbda4499ba67bf13715c6, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnSprint
+      objectReference: {fileID: 0}
+    - target: {fileID: -5970593528329470270, guid: 9f97456680abbda4499ba67bf13715c6, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerMovement, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: -5970593528329470270, guid: 9f97456680abbda4499ba67bf13715c6, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1679018516237657657, guid: 9f97456680abbda4499ba67bf13715c6, type: 3}
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
       value: 1
@@ -51197,6 +51232,10 @@ PrefabInstance:
     - target: {fileID: 3025604505036921255, guid: 9f97456680abbda4499ba67bf13715c6, type: 3}
       propertyPath: m_Name
       value: FirstPersonPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 3025604505036921255, guid: 9f97456680abbda4499ba67bf13715c6, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3257975432544714172, guid: 9f97456680abbda4499ba67bf13715c6, type: 3}
       propertyPath: m_LocalPosition.x
