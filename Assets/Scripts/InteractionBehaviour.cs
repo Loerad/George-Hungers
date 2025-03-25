@@ -1,9 +1,9 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Interactions;
-
+//Written originally by Rohan Anakin
+/// <summary>
+/// Handles the interaction between the different objects
+/// </summary>
 public class InteractionBehaviour : MonoBehaviour
 {
     private AudioSource audioSource;
@@ -24,7 +24,10 @@ public class InteractionBehaviour : MonoBehaviour
     {
         nextInteract -= Time.deltaTime;    
     }
-
+    /// <summary>
+    /// Do not call this method though classes. This is handled though a unity event
+    /// </summary>
+    /// <param name="context"></param>
     public void OnInteract(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Started)
@@ -38,35 +41,43 @@ public class InteractionBehaviour : MonoBehaviour
                     Debug.Log("hit");
                     Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.green);
 
-                    if (hit.collider.gameObject.CompareTag("George"))
+                    GameObject g = hit.collider.gameObject;
+
+                    if (g.CompareTag("George"))
                     {
-                        GeorgeInteract();
+                        GeorgeInteract(g);
                     }
-                    else if (hit.collider.gameObject.CompareTag("Puzzle"))
+                    else if (g.CompareTag("Puzzle"))
                     {
-                        PuzzleInteract();
+                        PuzzleInteract(g);
                     }
-                    else if (hit.collider.gameObject.CompareTag("Garbage"))
+                    else if (g.CompareTag("Garbage"))
                     {
-                        GarbageInteract();
+                        GarbageInteract(g);
                     }
                 }
                 nextInteract = interactDelay;
             }
         }
     }
-
-    public void GeorgeInteract()
+    /// <summary>
+    /// Handles putting garbage collected into george
+    /// </summary>
+    public void GeorgeInteract(GameObject hitObject)
     {
         //handle george
     }
-
-    public void PuzzleInteract()
+    /// <summary>
+    /// Handles opening a puzzle to fix a system
+    /// </summary>
+    public void PuzzleInteract(GameObject hitObject)
     {
         //handle puzzle
     }
-
-    public void GarbageInteract()
+    /// <summary>
+    /// Handles picking up garbage to be added to the player
+    /// </summary>
+    public void GarbageInteract(GameObject hitObject)
     {
         //handle garbage
     }

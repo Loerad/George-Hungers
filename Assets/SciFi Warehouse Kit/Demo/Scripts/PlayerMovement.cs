@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+//Rewritten by Rohan Anakin
+/// <summary>
+/// Handles player movement and step sounds
+/// </summary>
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement"), Tooltip("Properties for movement")]
@@ -63,12 +66,18 @@ public class PlayerMovement : MonoBehaviour
 
         HandleStepSound();
     }
-
+    /// <summary>
+    /// Do not call this method though classes. This is handled though a unity event
+    /// </summary>
+    /// <param name="context"></param>
     public void OnMove(InputAction.CallbackContext context) //unity event check the Player Input Component for context
     {
         moveAmount = context.ReadValue<Vector2>();
     }
-
+    /// <summary>
+    /// Do not call this method though classes. This is handled though a unity event
+    /// </summary>
+    /// <param name="context"></param>
     public void OnSprint(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Started)
@@ -83,7 +92,9 @@ public class PlayerMovement : MonoBehaviour
         }
         
     }
-
+    /// <summary>
+    /// Handles step sounds while walking 
+    /// </summary>
     private void HandleStepSound()
     {
         if (moveAmount.x != 0 || moveAmount.y != 0 ) //step behaviour 
@@ -104,7 +115,10 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-
+    /// <summary>
+    /// Generates a random step from the array of steps given
+    /// </summary>
+    /// <param name="steps"></param>
     private void RandomizeStep(List<AudioClip> steps)
     {
         int nextSound = Random.Range(0, steps.Count - 1);

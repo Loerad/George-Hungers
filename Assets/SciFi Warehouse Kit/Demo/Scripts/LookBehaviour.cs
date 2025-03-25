@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
-
+//Rewritten by Rohan Anakin
+/// <summary>
+/// Handles moving the camera when the player moves their look vector controller
+/// </summary>
 public class LookBehaviour : MonoBehaviour
 {
     public float lookSensitivityX = 100f;
@@ -24,7 +27,10 @@ public class LookBehaviour : MonoBehaviour
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         playerBody.Rotate(Vector3.up * lookX);
     }
-
+    /// <summary>
+    /// Do not call this method though classes. This is handled though a unity event
+    /// </summary>
+    /// <param name="context"></param>
     public void OnLook (InputAction.CallbackContext context)
     {
         lookVector = context.ReadValue<Vector2>();
