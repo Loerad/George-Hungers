@@ -1,5 +1,6 @@
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class HungerManager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class HungerManager : MonoBehaviour
     private float currentHunger;
     private float hungerPercent;
 
+    private VisualElement hungerBar;
+
     private void Awake()
     {
         if (Instance == null)
@@ -21,6 +24,9 @@ public class HungerManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        VisualElement document = GetComponent<UIDocument>().rootVisualElement;
+        hungerBar = document.Q<VisualElement>("Hungerbar");
     }
 
     void Start()
@@ -34,7 +40,7 @@ public class HungerManager : MonoBehaviour
         currentHunger -= hungerRate * Time.deltaTime;
         currentHunger = Mathf.Clamp(currentHunger, 0f, maxHunger);
 
-        //Debug.Log(HungerPercent());
+        hungerBar.style.width = Length.Percent(HungerPercent() * 100);
 
         //TODO: if hunger reaches 0 call game over
     }
