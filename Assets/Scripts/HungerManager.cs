@@ -2,6 +2,10 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+// Author: Lorna
+/// <summary>
+/// This script manages the hunger bar
+/// </summary>
 public class HungerManager : MonoBehaviour
 {
     public static HungerManager Instance;
