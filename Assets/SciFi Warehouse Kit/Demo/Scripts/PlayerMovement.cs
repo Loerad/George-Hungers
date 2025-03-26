@@ -1,60 +1,129 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
+//Rewritten by Rohan Anakin
+/// <summary>
+/// Handles player movement and step sounds
+/// </summary>
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Movement"), Tooltip("Properties for movement")]
+    [SerializeField]
+    private CharacterController controller;
+    private float speed = 5f;
+    private const float SPRINT_VALUE = 3f;
+    private const float GRAVITY = -9.81f;
+    private Vector3 velocity;
+    private Vector2 moveAmount;
 
-    public CharacterController controller;
-    public float speed = 8f;
-    public float gravity = -9.81f;
-    public float jumpHeight = 3f;
-    public Transform groundCheck;
-    public float groundDistance = 0.4f;
-    public LayerMask groundMask;
-    Vector3 velocity;
+    [Header("GroundCheck"), Tooltip("Properties for ground check")]
+    [SerializeField]
+    private Transform groundCheck;
+    private const float GROUND_DISTANCE = 0.45f;
+    [SerializeField]
+    private LayerMask groundMask;
     bool isGrounded;
 
+    [Header("Audio"), Tooltip("Properties for footsteps")]
     
-     public AudioClip footStepSound;
-     public float footStepDelay;
- 
-     private float nextFootstep = 0;
+    [SerializeField]
+    private GroundFlavour groundFlavour;
+    private const int METAL_LAYER = 3;
+    private AudioSource audioSource;
+    
+    [SerializeField]
+    private AudioClip footStepSound;
+    private float volume = 0.5f; //this is arbitrary and needs an accessor for a settings panel later
+    private const float WALKING_DELAY = 0.42f;
+    private const float SPRINTING_DELAY = 0.35f;
+    private float footStepDelay = 0.42f;
+    private float nextFootstep = 0;
+    
+    // add another list named whatever type of footstep here
+    [SerializeField]
+    private List<AudioClip> concreteFootsteps = new List<AudioClip>(); 
+    
+    [SerializeField]
+    private List<AudioClip> metalFootsteps = new List<AudioClip>();
 
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        audioSource = GetComponent<AudioSource>();
+    }
 
-        if (isGrounded && velocity.y <0)
-            {
-            velocity.y = -2f;
-            }
+    void FixedUpdate()
+    {
+        isGrounded = Physics.CheckSphere(groundCheck.position, GROUND_DISTANCE, groundMask);    
+    }
 
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+    void Update() //this code is from the demo from SciFi Warehouse
+    {
+        Vector3 motion = transform.right * moveAmount.x + transform.forward * moveAmount.y;
+        controller.Move(motion.normalized * speed * Time.deltaTime);
 
-        Vector3 motion = transform.right * x + transform.forward * z;
-        controller.Move(motion * speed * Time.deltaTime);
-
-        if(Input.GetButtonDown("Jump") && isGrounded)
-        {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-        }
-
-        velocity.y += gravity * Time.deltaTime;
+        velocity.y += GRAVITY * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
-         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W) && isGrounded)
+        HandleStepSound();
+    }
+    /// <summary>
+    /// Do not call this method though classes. This is handled though a unity event
+    /// </summary>
+    /// <param name="context"></param>
+    public void OnMove(InputAction.CallbackContext context) //unity event check the Player Input Component for context
+    {
+        moveAmount = context.ReadValue<Vector2>();
+    }
+    /// <summary>
+    /// Do not call this method though classes. This is handled though a unity event
+    /// </summary>
+    /// <param name="context"></param>
+    public void OnSprint(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            speed += SPRINT_VALUE;
+            footStepDelay = SPRINTING_DELAY;
+        }
+        else if (context.phase == InputActionPhase.Canceled)
+        {
+            speed -= SPRINT_VALUE;
+            footStepDelay = WALKING_DELAY;
+        }
+        
+    }
+    /// <summary>
+    /// Handles step sounds while walking 
+    /// </summary>
+    private void HandleStepSound()
+    {
+        if (moveAmount.x != 0 || moveAmount.y != 0 ) //step behaviour 
+        {
+            nextFootstep -= Time.deltaTime;
+            if (nextFootstep <= 0)
             {
-             nextFootstep -= Time.deltaTime;
-             if (nextFootstep <= 0) 
+                if (groundFlavour.CurrentFloor() == METAL_LAYER) //add a layer and a if else with the list for a new step type
                 {
-                 GetComponent<AudioSource>().PlayOneShot(footStepSound, 0.7f);
-                 nextFootstep += footStepDelay;
+                    RandomizeStep(metalFootsteps);
                 }
-             }
-         }
+                else 
+                {
+                    RandomizeStep(concreteFootsteps);
+                }
+                audioSource.PlayOneShot(footStepSound, volume);
+                nextFootstep += footStepDelay;
+            }
+        }
+    }
+    /// <summary>
+    /// Generates a random step from the array of steps given
+    /// </summary>
+    /// <param name="steps"></param>
+    private void RandomizeStep(List<AudioClip> steps)
+    {
+        int nextSound = Random.Range(0, steps.Count - 1);
+        footStepSound = steps[nextSound];
+    }
 }
 
 
