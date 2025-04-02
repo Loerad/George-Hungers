@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9165912523797738332}
   - component: {fileID: 6326712408222767628}
   - component: {fileID: 6456355599636828937}
+  - component: {fileID: 6091262342480006016}
   m_Layer: 7
   m_Name: PuzzlePlaceholder
   m_TagString: Puzzle
@@ -108,3 +109,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6091262342480006016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899464336314386229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc307e2039d41da489af9caec999a8ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materials:
+  - {fileID: 2100000, guid: 1acf553e6e87f8548afb00e9c15b0f9c, type: 2}
+  - {fileID: 2100000, guid: 4c91c69b8e6f59e4594cc5e2801bbbd6, type: 2}
