@@ -19,10 +19,12 @@ public class Puzzle : MonoBehaviour
             if (active)
             {
                 GetComponent<MeshRenderer>().material = materials[1]; //active material
+                GetComponentInChildren<SpriteRenderer>().color = Color.red;
             }
             else
             {
                 GetComponent<MeshRenderer>().material = materials[0]; //regular material
+                GetComponentInChildren<SpriteRenderer>().color = Color.green;
             }
         }
     }

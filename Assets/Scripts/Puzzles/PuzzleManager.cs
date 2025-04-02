@@ -10,8 +10,8 @@ public class PuzzleManager : MonoBehaviour
     public static PuzzleManager Instance;
     [SerializeField] private Puzzle[] puzzles;
 
-    private const float MAX_TIME = 10f; //Max time between activating puzzles
-    private const float MIN_TIME = 5f; //Min time between activating puzzles
+    private const float MAX_TIME = 30f; //Max time between activating puzzles
+    private const float MIN_TIME = 10f; //Min time between activating puzzles
     private float currentTime = 0f; //Time since last puzzle activated
     private float timeToActivate = 0f; //Time to activate the next puzzle
 
