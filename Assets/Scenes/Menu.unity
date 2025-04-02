@@ -1080,7 +1080,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1700211364}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1772751763}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: ExitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1700211364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1119,6 +1131,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1700211361}
   m_CullTransparentMesh: 1
+--- !u!114 &1772751763 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7538793149654338467, guid: 57fc4c50664a13143b2b0767c13cec86, type: 3}
+  m_PrefabInstance: {fileID: 4185383713601338613}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 891ec17b434b32640a02c148a9d2ec88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1794486237
 GameObject:
   m_ObjectHideFlags: 0
@@ -1265,7 +1288,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1941892066}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1772751763}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: StartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1941892066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1304,6 +1339,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1941892063}
   m_CullTransparentMesh: 1
+--- !u!1001 &4185383713601338613
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4189389990722648485, guid: 57fc4c50664a13143b2b0767c13cec86, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 972.7871
+      objectReference: {fileID: 0}
+    - target: {fileID: 4189389990722648485, guid: 57fc4c50664a13143b2b0767c13cec86, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 484.22473
+      objectReference: {fileID: 0}
+    - target: {fileID: 4189389990722648485, guid: 57fc4c50664a13143b2b0767c13cec86, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.5105586
+      objectReference: {fileID: 0}
+    - target: {fileID: 4189389990722648485, guid: 57fc4c50664a13143b2b0767c13cec86, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4189389990722648485, guid: 57fc4c50664a13143b2b0767c13cec86, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4189389990722648485, guid: 57fc4c50664a13143b2b0767c13cec86, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4189389990722648485, guid: 57fc4c50664a13143b2b0767c13cec86, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4189389990722648485, guid: 57fc4c50664a13143b2b0767c13cec86, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4189389990722648485, guid: 57fc4c50664a13143b2b0767c13cec86, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4189389990722648485, guid: 57fc4c50664a13143b2b0767c13cec86, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9116143744492860979, guid: 57fc4c50664a13143b2b0767c13cec86, type: 3}
+      propertyPath: m_Name
+      value: GameManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 57fc4c50664a13143b2b0767c13cec86, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1312,3 +1404,4 @@ SceneRoots:
   - {fileID: 288435459}
   - {fileID: 533816492}
   - {fileID: 1000050135}
+  - {fileID: 4185383713601338613}
