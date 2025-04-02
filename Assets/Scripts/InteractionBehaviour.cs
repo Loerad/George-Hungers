@@ -14,6 +14,8 @@ public class InteractionBehaviour : MonoBehaviour
     private LayerMask layerMask;
     [SerializeField]
     private int garbageCount;
+    [SerializeField]
+    private float garbageValue = 5;
 
     void Start()
     {
@@ -38,9 +40,8 @@ public class InteractionBehaviour : MonoBehaviour
             {
                 audioSource.PlayOneShot(interactSound, 1f);
                 RaycastHit hit;
-                if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity, layerMask))
+                if (Physics.Raycast(transform.position, transform.forward, out hit, 3.5f, layerMask))
                 {
-                    Debug.Log("hit");
                     Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.green);
 
                     GameObject g = hit.collider.gameObject;
@@ -69,6 +70,14 @@ public class InteractionBehaviour : MonoBehaviour
     {
         if (garbageCount > 0)
         {
+            if (HungerManager.Instance.CurrentHunger >= HungerManager.Instance.MaxHunger)
+            {
+                HungerManager.Instance.CurrentHunger = HungerManager.Instance.MaxHunger;
+            }
+            else
+            {
+                HungerManager.Instance.CurrentHunger += garbageValue;
+            }
             garbageCount--;
         }
     }
