@@ -1,5 +1,9 @@
 using UnityEngine;
-
+//Written originally by Alex Reid
+//Written originally by Alex Reid
+/// <summary>
+/// Handles activating puzzles on a timer
+/// </summary>
 
 public class PuzzleManager : MonoBehaviour
 {

@@ -1,4 +1,9 @@
 using UnityEngine;
+//Written originally by Alex Reid
+/// <summary>
+/// Handles setting a puzzle's material when activated or deactivated.
+/// Will also contain functionality for opening puzzle menu when interacted with.
+/// </summary>
 
 public class Puzzle : MonoBehaviour
 {
