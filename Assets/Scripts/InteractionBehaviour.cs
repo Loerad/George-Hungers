@@ -12,6 +12,8 @@ public class InteractionBehaviour : MonoBehaviour
     private readonly float interactDelay = 0.1f;
     private float nextInteract = 0;
     private LayerMask layerMask;
+    [SerializeField]
+    private int garbageCount;
 
     void Start()
     {
@@ -65,7 +67,10 @@ public class InteractionBehaviour : MonoBehaviour
     /// </summary>
     public void GeorgeInteract(GameObject hitObject)
     {
-        //handle george
+        if (garbageCount > 0)
+        {
+            garbageCount--;
+        }
     }
     /// <summary>
     /// Handles opening a puzzle to fix a system
@@ -79,6 +84,7 @@ public class InteractionBehaviour : MonoBehaviour
     /// </summary>
     public void GarbageInteract(GameObject hitObject)
     {
-        //handle garbage
+       garbageCount++;
+       Destroy(hitObject);
     }
 }
