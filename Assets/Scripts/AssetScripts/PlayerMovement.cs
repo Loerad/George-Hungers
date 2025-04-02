@@ -58,6 +58,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update() //this code is from the demo from SciFi Warehouse
     {
+        if (PuzzleManager.Instance.InPuzzle){return;}
+        
         Vector3 motion = transform.right * moveAmount.x + transform.forward * moveAmount.y;
         controller.Move(motion.normalized * speed * Time.deltaTime);
 

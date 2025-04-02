@@ -1955,6 +1955,7 @@ MonoBehaviour:
   - {fileID: 1408992557}
   - {fileID: 2127875453}
   - {fileID: 1092520337}
+  InPuzzle: 0
 --- !u!4 &435563950
 Transform:
   m_ObjectHideFlags: 0

@@ -73,9 +73,10 @@ public class InteractionBehaviour : MonoBehaviour
     public void PuzzleInteract(GameObject hitObject)
     {
         //handle puzzle
-
-        //TODO: Bring up puzzle menu, set active after puzzle completion
-        hitObject.GetComponent<Puzzle>().Active = false;
+        if (hitObject.GetComponent<Puzzle>().Active)
+        {
+            hitObject.GetComponent<Puzzle>().OnInteract();
+        }
     }
     /// <summary>
     /// Handles picking up garbage to be added to the player

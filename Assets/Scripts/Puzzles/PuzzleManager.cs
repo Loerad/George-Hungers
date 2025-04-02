@@ -15,6 +15,8 @@ public class PuzzleManager : MonoBehaviour
     private float currentTime = 0f; //Time since last puzzle activated
     private float timeToActivate = 0f; //Time to activate the next puzzle
 
+    public bool InPuzzle = false;
+
     void Awake()
     {
         if (Instance == null)

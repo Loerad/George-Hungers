@@ -8,6 +8,8 @@ using UnityEngine;
 public class Puzzle : MonoBehaviour
 {
     [SerializeField] private Material[] materials;
+    [SerializeField] private GameObject puzzleCanvas;
+
     private bool active;
     public bool Active
     {
@@ -27,5 +29,20 @@ public class Puzzle : MonoBehaviour
                 GetComponentInChildren<SpriteRenderer>().color = Color.green;
             }
         }
+    }
+
+    public void OnInteract()
+    {
+        puzzleCanvas.SetActive(true);
+        PuzzleManager.Instance.InPuzzle = true;
+        Cursor.lockState = CursorLockMode.Confined;
+    }
+
+    public void CompletePuzzle()
+    {
+        puzzleCanvas.SetActive(false);
+        PuzzleManager.Instance.InPuzzle = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Active = false;
     }
 }
