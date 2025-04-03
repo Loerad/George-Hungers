@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 //Written originally by Rohan Anakin
 /// <summary>
 /// Handles the interaction between the different objects
@@ -16,6 +17,8 @@ public class InteractionBehaviour : MonoBehaviour
     private int garbageCount;
     [SerializeField]
     private float garbageValue = 5;
+    [SerializeField]
+    private TMP_Text garbageCountText;
 
     void Start()
     {
@@ -29,7 +32,7 @@ public class InteractionBehaviour : MonoBehaviour
         nextInteract -= Time.deltaTime;    
     }
     /// <summary>
-    /// Do not call this method though classes. This is handled though a unity event
+    /// Do not call this method through classes. This is handled though a unity event
     /// </summary>
     /// <param name="context"></param>
     public void OnInteract(InputAction.CallbackContext context)
