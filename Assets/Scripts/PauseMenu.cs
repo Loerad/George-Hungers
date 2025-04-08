@@ -24,6 +24,7 @@ public class PauseMenu : MonoBehaviour
         else
         {
             GameManager.Instance.gameState = GameState.InGame;
+            
         }
     }
 

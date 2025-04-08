@@ -22,10 +22,6 @@ public class InteractionBehaviour : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.Instance.gameState == GameState.Paused)
-        {
-            return;
-        }
         nextInteract -= Time.deltaTime;    
     }
     /// <summary>

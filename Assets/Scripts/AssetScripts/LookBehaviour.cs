@@ -25,6 +25,7 @@ public class LookBehaviour : MonoBehaviour
             Cursor.lockState = CursorLockMode.Confined;
             return;
         }
+        
         float lookX = lookVector.x * lookSensitivityX * Time.deltaTime;
         float lookY = lookVector.y * lookSensitivityY * Time.deltaTime;
         xRotation -= lookY;
