@@ -73,6 +73,10 @@ public class InteractionBehaviour : MonoBehaviour
     public void PuzzleInteract(GameObject hitObject)
     {
         //handle puzzle
+        if (hitObject.GetComponent<Puzzle>().Active)
+        {
+            hitObject.GetComponent<Puzzle>().OnInteract();
+        }
     }
     /// <summary>
     /// Handles picking up garbage to be added to the player

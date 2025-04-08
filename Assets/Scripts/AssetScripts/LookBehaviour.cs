@@ -26,6 +26,8 @@ public class LookBehaviour : MonoBehaviour
             return;
         }
         
+        if (PuzzleManager.Instance.InPuzzle){return;}
+
         float lookX = lookVector.x * lookSensitivityX * Time.deltaTime;
         float lookY = lookVector.y * lookSensitivityY * Time.deltaTime;
         xRotation -= lookY;

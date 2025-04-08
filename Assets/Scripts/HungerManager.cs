@@ -14,6 +14,11 @@ public class HungerManager : MonoBehaviour
     [SerializeField] private float hungerRate;
 
     private float currentHunger;
+    public float CurrentHunger
+    {
+        get{return currentHunger;}
+        set{currentHunger = value;}
+    }
     private float hungerPercent;
 
     private VisualElement hungerBar;
