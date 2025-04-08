@@ -58,6 +58,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Update() //this code is from the demo from SciFi Warehouse
     {
+        if (GameManager.Instance.gameState == GameState.Paused)
+        {
+            return;
+        }
         Vector3 motion = transform.right * moveAmount.x + transform.forward * moveAmount.y;
         controller.Move(motion.normalized * speed * Time.deltaTime);
 
