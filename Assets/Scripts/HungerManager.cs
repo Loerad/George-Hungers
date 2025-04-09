@@ -1,4 +1,3 @@
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -10,7 +9,8 @@ public class HungerManager : MonoBehaviour
 {
     public static HungerManager Instance;
 
-    [SerializeField] private float maxHunger;
+    private readonly float maxHunger = 100;
+    public float MaxHunger {get {return maxHunger;} }
     [SerializeField] private float hungerRate;
 
     private float currentHunger;
@@ -40,7 +40,7 @@ public class HungerManager : MonoBehaviour
 
     void Start()
     {
-        currentHunger = maxHunger;
+        CurrentHunger = MaxHunger;
     }
 
     // Update is called once per frame
@@ -51,8 +51,8 @@ public class HungerManager : MonoBehaviour
             return;
         }
         
-        currentHunger -= hungerRate * Time.deltaTime;
-        currentHunger = Mathf.Clamp(currentHunger, 0f, maxHunger);
+        CurrentHunger -= hungerRate * Time.deltaTime;
+        CurrentHunger = Mathf.Clamp(CurrentHunger, 0f, maxHunger);
 
         hungerBar.style.width = Length.Percent(HungerPercent() * 100);
 
@@ -60,12 +60,7 @@ public class HungerManager : MonoBehaviour
     }
 
     public float HungerPercent()
-    {
-        if (maxHunger <= 0)
-        {
-            return 0f;
-        }
-            
-        return currentHunger / maxHunger;
+    {            
+        return CurrentHunger / MaxHunger;
     }
 }
