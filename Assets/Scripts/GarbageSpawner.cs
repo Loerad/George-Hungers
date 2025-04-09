@@ -28,7 +28,7 @@ public class GarbageSpawner : MonoBehaviour
     {
         Bounds bounds = GetComponent<Collider>().bounds;
         float offsetX = Random.Range(-bounds.extents.x, bounds.extents.x);
-        float offsetY = -bounds.extents.y + 0.75f;
+        float offsetY = -bounds.extents.y;
         float offsetZ = Random.Range(-bounds.extents.z, bounds.extents.z);
 
         Instantiate(garbage);
