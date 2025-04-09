@@ -30,6 +30,7 @@ public class InteractionBehaviour : MonoBehaviour
     /// <param name="context"></param>
     public void OnInteract(InputAction.CallbackContext context)
     {
+        if (PuzzleManager.Instance.InPuzzle || GameManager.Instance.gameState == GameState.Paused){return;}
         if (context.phase == InputActionPhase.Started)
         {
             if (nextInteract <= 0)

@@ -20,17 +20,19 @@ public class PauseMenu : MonoBehaviour
         if (pauseUI.enabled)
         {
             GameManager.Instance.gameState = GameState.Paused;
+            Cursor.lockState = CursorLockMode.Confined;
         }
         else
         {
             GameManager.Instance.gameState = GameState.InGame;
-            
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 
     public void ContinueGame()
     {
         GameManager.Instance.gameState = GameState.InGame;
+        Cursor.lockState = CursorLockMode.Locked;
         pauseUI.enabled = false;
     }
 }
