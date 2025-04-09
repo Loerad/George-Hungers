@@ -71,6 +71,7 @@ public class InteractionBehaviour : MonoBehaviour
     /// <param name="context"></param>
     public void OnInteract(InputAction.CallbackContext context)
     {
+        if (PuzzleManager.Instance.InPuzzle || GameManager.Instance.gameState == GameState.Paused){return;}
         if (context.phase == InputActionPhase.Started)
         {
             if (nextInteract <= 0)
@@ -123,6 +124,10 @@ public class InteractionBehaviour : MonoBehaviour
     public void PuzzleInteract(GameObject hitObject)
     {
         //handle puzzle
+        if (hitObject.GetComponent<Puzzle>().Active)
+        {
+            hitObject.GetComponent<Puzzle>().OnInteract();
+        }
     }
     /// <summary>
     /// Handles picking up garbage to be added to the player
