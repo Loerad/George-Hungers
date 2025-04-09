@@ -15,7 +15,7 @@ public class Map : MonoBehaviour
     /// <param name="context"></param>
     public void OnMapToggle(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started)
+        if (context.phase == InputActionPhase.Started && !PuzzleManager.Instance.InPuzzle)
         {
             map.SetActive(!map.activeSelf);
         }

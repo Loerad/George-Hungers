@@ -45,4 +45,11 @@ public class Puzzle : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Active = false;
     }
+
+    public void close()
+    {
+        puzzleCanvas.SetActive(false);
+        PuzzleManager.Instance.InPuzzle = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
 }
