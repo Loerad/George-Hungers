@@ -19,7 +19,9 @@ public class LookBehaviour : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    { 
+        if (PuzzleManager.Instance.InPuzzle || GameManager.Instance.gameState == GameState.Paused){return;}
+
         float lookX = lookVector.x * lookSensitivityX * Time.deltaTime;
         float lookY = lookVector.y * lookSensitivityY * Time.deltaTime;
         xRotation -= lookY;

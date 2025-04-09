@@ -14,6 +14,11 @@ public class HungerManager : MonoBehaviour
     [SerializeField] private float hungerRate;
 
     private float currentHunger;
+    public float CurrentHunger
+    {
+        get{return currentHunger;}
+        set{currentHunger = value;}
+    }
     private float hungerPercent;
 
     private VisualElement hungerBar;
@@ -41,6 +46,11 @@ public class HungerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.Instance.gameState == GameState.Paused)
+        {
+            return;
+        }
+        
         currentHunger -= hungerRate * Time.deltaTime;
         currentHunger = Mathf.Clamp(currentHunger, 0f, maxHunger);
 
