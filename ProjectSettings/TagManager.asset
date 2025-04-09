@@ -44,6 +44,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Hunger
+    uniqueID: 3981585593
+    locked: 0
+  - name: Puzzle
+    uniqueID: 1536176765
+    locked: 0
+  - name: Map
+    uniqueID: 2514826429
+    locked: 0
   m_RenderingLayers:
   - Default
   - Light Layer 1
