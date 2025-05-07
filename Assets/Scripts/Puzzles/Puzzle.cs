@@ -37,12 +37,15 @@ public class Puzzle : MonoBehaviour
 
     void Update()
     {
-        bool completed = true;
-        foreach (Toggle t in toggles)
+        if (active)
         {
-            if(!t.isOn){ completed = false;}
+            bool completed = true;
+            foreach (Toggle t in toggles)
+            {
+                if(!t.isOn){ completed = false;}
+            }
+            fixButton.interactable = completed;
         }
-        fixButton.interactable = completed;
     }
 
     public void OnInteract()
