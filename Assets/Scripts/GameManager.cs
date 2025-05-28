@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 public enum GameState
 {
     InGame,
-    Paused
+    Paused,
+    GameOver
 }
 
 public class GameManager : MonoBehaviour
@@ -31,7 +32,6 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-
         SceneManager.LoadScene("Ship");
     }
 
@@ -39,5 +39,10 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("exit");
         Application.Quit();
+    }
+
+    public void GameOver()
+    {
+        SceneManager.LoadScene("GameOver");
     }
 }

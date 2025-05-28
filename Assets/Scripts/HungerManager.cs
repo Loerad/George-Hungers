@@ -57,6 +57,12 @@ public class HungerManager : MonoBehaviour
         hungerBar.style.width = Length.Percent(HungerPercent() * 100);
 
         //TODO: if hunger reaches 0 call game over
+
+        if (currentHunger <= 0)
+        {
+            GameManager.Instance.gameState = GameState.GameOver;
+            GameManager.Instance.GameOver();
+        }
     }
 
     public float HungerPercent()
