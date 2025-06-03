@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 //Rewritten by Rohan Anakin
 /// <summary>
 /// Handles player movement and step sounds
@@ -11,18 +12,21 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private CharacterController controller;
     private float speed = 5f;
-    private const float SPRINT_VALUE = 3f;
+    private float sprintSpeed = 3f;
     private const float GRAVITY = -9.81f;
     private Vector3 velocity;
     private Vector2 moveAmount;
 
-    [Header("GroundCheck"), Tooltip("Properties for ground check")]
+    [Header("Sprint"), Tooltip("Properties for sprinting")]
+    public float sprintValue;
+    float sprintMax = 3.0f;
+    bool isRechargingSprint;
+    bool isSprinting;
+    bool isSprintEmpty;
+    float sprintTimeout = 2.0f;
+    float sprintTimer;
     [SerializeField]
-    private Transform groundCheck;
-    private const float GROUND_DISTANCE = 0.45f;
-    [SerializeField]
-    private LayerMask groundMask;
-    bool isGrounded;
+    Image sprintBar;
 
     [Header("Audio"), Tooltip("Properties for footsteps")]
     
@@ -49,11 +53,8 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-    }
-
-    void FixedUpdate()
-    {
-        isGrounded = Physics.CheckSphere(groundCheck.position, GROUND_DISTANCE, groundMask);    
+        sprintValue = sprintMax;
+        sprintTimer = sprintTimeout;
     }
 
     void Update() //this code is from the demo from SciFi Warehouse
@@ -62,16 +63,63 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
-        if (PuzzleManager.Instance.InPuzzle){return;}
-        
-        Vector3 motion = transform.right * moveAmount.x + transform.forward * moveAmount.y;
-        controller.Move(motion.normalized * speed * Time.deltaTime);
+        if (PuzzleManager.Instance.InPuzzle) { return; }
 
-        velocity.y += GRAVITY * Time.deltaTime;
+        Vector3 motion = transform.right * moveAmount.x + transform.forward * moveAmount.y;
+
         controller.Move(velocity * Time.deltaTime);
+        velocity.y += GRAVITY * Time.deltaTime;
+        if (isSprinting)
+        {
+            controller.Move(motion.normalized * (speed + sprintSpeed) * Time.deltaTime);
+        }
+        else
+        {
+            controller.Move(motion.normalized * speed * Time.deltaTime);
+        }
 
         HandleStepSound();
+
+        if (sprintValue <= 0)
+        {
+            isSprinting = false;
+            isSprintEmpty = true;
+        }
+
+        if (!isSprinting)
+        {
+            sprintTimer -= Time.deltaTime;
+            if (sprintTimer <= 0)
+            {
+                if (isSprintEmpty)
+                {
+                    isRechargingSprint = true;
+                    RechargeSprint();
+                }
+                else if (sprintValue <= sprintMax)
+                {
+                    RechargeSprint();
+                }
+            }
+            if (sprintValue >= sprintMax)
+            {
+                isRechargingSprint = false;
+                isSprintEmpty = false;
+            }
+        }
+        else
+        {
+            sprintTimer = sprintTimeout;
+            sprintValue -= Time.deltaTime;
+        }
+        sprintBar.fillAmount = Mathf.InverseLerp(0, sprintMax, sprintValue);
     }
+
+    void RechargeSprint()
+    {
+        sprintValue += Time.deltaTime * 1.75f;
+    }
+
     /// <summary>
     /// Do not call this method though classes. This is handled though a unity event
     /// </summary>
@@ -80,30 +128,45 @@ public class PlayerMovement : MonoBehaviour
     {
         moveAmount = context.ReadValue<Vector2>();
     }
+
     /// <summary>
     /// Do not call this method though classes. This is handled though a unity event
     /// </summary>
     /// <param name="context"></param>
     public void OnSprint(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started)
+        if (GameManager.Instance.gameState == GameState.Paused || PuzzleManager.Instance.InPuzzle)
         {
-            speed += SPRINT_VALUE;
-            footStepDelay = SPRINTING_DELAY;
+            return;
         }
-        else if (context.phase == InputActionPhase.Canceled)
+        if (!isRechargingSprint)
         {
-            speed -= SPRINT_VALUE;
-            footStepDelay = WALKING_DELAY;
+            if (context.phase == InputActionPhase.Started)
+            {
+                isSprinting = true;
+            }
+            else if (context.phase == InputActionPhase.Canceled)
+            {
+                isSprinting = false;
+            } 
         }
-        
+
     }
     /// <summary>
     /// Handles step sounds while walking 
     /// </summary>
     private void HandleStepSound()
     {
-        if (moveAmount.x != 0 || moveAmount.y != 0 ) //step behaviour 
+        if (isSprinting)
+        {
+            footStepDelay = SPRINTING_DELAY;
+        }
+        else
+        {
+            footStepDelay = WALKING_DELAY;
+        }
+
+        if (controller.velocity.x !>= 0.2 || controller.velocity.z !>= 0.2 ) //step behaviour 
         {
             nextFootstep -= Time.deltaTime;
             if (nextFootstep <= 0)
