@@ -1150,6 +1150,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57fc4c50664a13143b2b0767c13cec86, type: 3}
+--- !u!114 &242033245 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7538793149654338467, guid: 57fc4c50664a13143b2b0767c13cec86, type: 3}
+  m_PrefabInstance: {fileID: 242033244}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 891ec17b434b32640a02c148a9d2ec88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &245447293
 GameObject:
   m_ObjectHideFlags: 0
@@ -6060,10 +6071,10 @@ PrefabInstance:
     - target: {fileID: 3203428819072665525, guid: 4b7b2008ede8b1647bb1854c51d6c084, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 242033245}
     - target: {fileID: 3203428819072665525, guid: 4b7b2008ede8b1647bb1854c51d6c084, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ExitGame
+      value: ReturnToMenu
       objectReference: {fileID: 0}
     - target: {fileID: 3614441730923338094, guid: 4b7b2008ede8b1647bb1854c51d6c084, type: 3}
       propertyPath: m_Pivot.x

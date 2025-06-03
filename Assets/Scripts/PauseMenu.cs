@@ -1,3 +1,8 @@
+// Author: Lorna
+/// <summary>
+/// This script manages the pause menu functions
+/// </summary>
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 

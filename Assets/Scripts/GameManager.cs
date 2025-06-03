@@ -1,3 +1,9 @@
+
+// Author: Lorna
+/// <summary>
+/// This script handles the game functions for the menus and game over
+/// </summary>
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,7 +11,8 @@ using UnityEngine.SceneManagement;
 public enum GameState
 {
     InGame,
-    Paused
+    Paused,
+    GameOver
 }
 
 public class GameManager : MonoBehaviour
@@ -26,12 +33,11 @@ public class GameManager : MonoBehaviour
         {
             Destroy(Instance);
         }
-        
+
     }
 
     public void StartGame()
     {
-
         SceneManager.LoadScene("Ship");
     }
 
@@ -39,5 +45,17 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("exit");
         Application.Quit();
+    }
+
+    public void GameOver()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        SceneManager.LoadScene("GameOver");
+    }
+
+    public void ReturnToMenu()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        SceneManager.LoadScene("Menu");
     }
 }
