@@ -1,3 +1,9 @@
+
+// Author: Lorna
+/// <summary>
+/// This script handles the game functions for the menus and game over
+/// </summary>
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
