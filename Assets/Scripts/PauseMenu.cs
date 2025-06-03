@@ -1,3 +1,8 @@
+// Author: Lorna
+/// <summary>
+/// This script manages the pause menu functions
+/// </summary>
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,6 +20,7 @@ public class PauseMenu : MonoBehaviour
 
     public void OnPause(InputAction.CallbackContext context)
     {
+        if (PuzzleManager.Instance.InPuzzle){return;} //don't allow pause if puzzle is open
 
         pauseUI.enabled = !pauseUI.enabled;
         if (pauseUI.enabled)
