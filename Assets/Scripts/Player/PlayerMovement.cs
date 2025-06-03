@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 //Rewritten by Rohan Anakin
 /// <summary>
 /// Handles player movement and step sounds
@@ -24,6 +25,8 @@ public class PlayerMovement : MonoBehaviour
     bool isSprintEmpty;
     float sprintTimeout = 2.0f;
     float sprintTimer;
+    [SerializeField]
+    Image sprintBar;
 
     [Header("Audio"), Tooltip("Properties for footsteps")]
     
@@ -60,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
-        if (PuzzleManager.Instance.InPuzzle){return;}
+        if (PuzzleManager.Instance.InPuzzle) { return; }
 
         Vector3 motion = transform.right * moveAmount.x + transform.forward * moveAmount.y;
 
@@ -77,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
 
         HandleStepSound();
 
-        if(sprintValue <= 0)
+        if (sprintValue <= 0)
         {
             isSprinting = false;
             isSprintEmpty = true;
@@ -86,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
         if (!isSprinting)
         {
             sprintTimer -= Time.deltaTime;
-            if(sprintTimer <= 0)
+            if (sprintTimer <= 0)
             {
                 if (isSprintEmpty)
                 {
@@ -109,6 +112,7 @@ public class PlayerMovement : MonoBehaviour
             sprintTimer = sprintTimeout;
             sprintValue -= Time.deltaTime;
         }
+        sprintBar.fillAmount = Mathf.InverseLerp(0, sprintMax, sprintValue);
     }
 
     void RechargeSprint()
