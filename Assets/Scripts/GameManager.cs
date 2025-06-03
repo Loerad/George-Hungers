@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(Instance);
         }
-        
+
     }
 
     public void StartGame()
@@ -43,6 +43,13 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        Cursor.lockState = CursorLockMode.Confined;
         SceneManager.LoadScene("GameOver");
+    }
+
+    public void ReturnToMenu()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        SceneManager.LoadScene("Menu");
     }
 }
